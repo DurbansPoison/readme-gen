@@ -25,4 +25,4 @@ yarn-error.log*
 
 /trunk
 /history
-./vscode
+.vscode

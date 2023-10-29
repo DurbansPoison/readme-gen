@@ -23,6 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-/trunk
-/history
-./vscode
+.trunk
+.history
