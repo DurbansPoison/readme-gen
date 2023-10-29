@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/DurbansPoison/readme-gen/static/css/main.7ab08ebf.css",
+    "main.js": "/DurbansPoison/readme-gen/static/js/main.2ab9a6f4.js",
+    "static/js/787.88da69ea.chunk.js": "/DurbansPoison/readme-gen/static/js/787.88da69ea.chunk.js",
+    "index.html": "/DurbansPoison/readme-gen/index.html",
+    "main.7ab08ebf.css.map": "/DurbansPoison/readme-gen/static/css/main.7ab08ebf.css.map",
+    "main.2ab9a6f4.js.map": "/DurbansPoison/readme-gen/static/js/main.2ab9a6f4.js.map",
+    "787.88da69ea.chunk.js.map": "/DurbansPoison/readme-gen/static/js/787.88da69ea.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ab08ebf.css",
+    "static/js/main.2ab9a6f4.js"
+  ]
+}
