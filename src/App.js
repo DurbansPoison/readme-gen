@@ -12,6 +12,8 @@ import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import JSZip from 'jszip';
 import './App.css';
 
+console.log('sanity-check');
+
 function App() {
   const [formData, setFormData] = useState({
     ProjectTitle: '',
