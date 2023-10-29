@@ -1,0 +1,137 @@
+import React, { useState } from 'react';
+import {
+  Button,
+  TextField,
+  Container,
+  Grid,
+  Typography,
+  Checkbox,
+} from '@mui/material';
+import { saveAs } from 'file-saver';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import JSZip from 'jszip';
+
+function App() {
+  const [formData, setFormData] = useState({
+    ProjectTitle: '',
+    Developer: '',
+    WithTheHelpOf: '',
+    Description: '',
+    PrintSettings: '',
+    BOM: '',
+    BuildGuide: '',
+    AdditionalThanks: '',
+  });
+  const [showAdditionalFields, setShowAdditionalFields] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage([600, 400]);
+
+    const content = Object.keys(formData)
+      .map((key) => `${key}: ${formData[key]}`)
+      .join('\n');
+
+    page.drawText(content, {
+      x: 50,
+      y: 250,
+      size: 14,
+      font: await pdfDoc.embedFont(StandardFonts.Helvetica),
+      color: rgb(0, 0, 0),
+    });
+
+    const pdfBytes = await pdfDoc.save();
+
+    const text = Object.keys(formData)
+      .map((key) => `${key}: ${formData[key]}`)
+      .join('\n');
+
+    const textBlob = new Blob([text], { type: 'text/plain' });
+
+    const zip = new JSZip();
+    zip.file('project_data.pdf', pdfBytes);
+    zip.file('project_data.txt', textBlob);
+
+    zip.generateAsync({ type: 'blob' }).then((content) => {
+      saveAs(content, 'project_data.zip');
+    });
+  };
+
+  return (
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h4">Project Data</Typography>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          {Object.keys(formData).map((key) => (
+            <TextField
+              key={key}
+              name={key}
+              label={key}
+              value={formData[key]}
+              onChange={handleInputChange}
+              fullWidth
+            />
+          )};
+
+          {/* Checkbox to show additional fields */}
+          <div>
+            <label>
+              <Checkbox
+                checked={showAdditionalFields}
+                onChange={(e) => setShowAdditionalFields(e.target.checked)}
+              />
+              Show Additional Fields
+            </label>
+          </div>
+
+          {showAdditionalFields && (
+            <div>
+              {Array.from({ length: 9 }, (_, index) => (
+                <div key={index}>
+                  <TextField
+                    name={`WithTheHelpOf_${index + 1}`}
+                    label={`WithTheHelpOf #${index + 1}`}
+                    value={formData[`WithTheHelpOf_${index + 1}`]}
+                    onChange={handleInputChange}
+                    fullWidth
+                  />
+                  <TextField
+                    name={`PrintSettings_${index + 1}`}
+                    label={`PrintSettings #${index + 1}`}
+                    value={formData[`PrintSettings_${index + 1}`]}
+                    onChange={handleInputChange}
+                    fullWidth
+                  />
+                  <TextField
+                    name={`BOM_${index + 1}`}
+                    label={`BOM #${index + 1}`}
+                    value={formData[`BOM_${index + 1}`]}
+                    onChange={handleInputChange}
+                    fullWidth
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Generate PDF and Text
+          </Button>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
+
+export default App;
