@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/readme-gen/static/css/main.7ab08ebf.css",
-    "main.js": "/readme-gen/static/js/main.72fb5927.js",
+    "main.js": "/readme-gen/static/js/main.0b2abd3b.js",
     "static/js/496.09765cf6.chunk.js": "/readme-gen/static/js/496.09765cf6.chunk.js",
     "index.html": "/readme-gen/index.html",
     "main.7ab08ebf.css.map": "/readme-gen/static/css/main.7ab08ebf.css.map",
-    "main.72fb5927.js.map": "/readme-gen/static/js/main.72fb5927.js.map",
+    "main.0b2abd3b.js.map": "/readme-gen/static/js/main.0b2abd3b.js.map",
     "496.09765cf6.chunk.js.map": "/readme-gen/static/js/496.09765cf6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7ab08ebf.css",
-    "static/js/main.72fb5927.js"
+    "static/js/main.0b2abd3b.js"
   ]
 }

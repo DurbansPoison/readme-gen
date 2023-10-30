@@ -18,5 +18,7 @@
         "titleBar.border": "#f47a5b",
         "titleBar.inactiveBackground": "#f47a5b99",
         "titleBar.inactiveForeground": "#00000099"
-    }
+    },
+    "bitoAI.codeCompletion.enableAutoCompletion": true,
+    "bitoAI.codeCompletion.enableCommentToCode": true
 }
